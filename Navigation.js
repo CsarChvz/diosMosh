@@ -7,8 +7,7 @@ import AccountScreen from "./app/screens/AccountScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
 import LoginScreen from "./app/screens/LoginScreen";
 
-const HomeStack = createNativeStackNavigator();
-const MyStack = () => {};
+
 
 const Tab = createBottomTabNavigator();
 
