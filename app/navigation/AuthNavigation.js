@@ -37,12 +37,12 @@ const MyAuthStack = () => {
 // Esta parte segun mosh
 export default MyAuthStack;
 
-// Esta parte esta igual a la de Navigation  - Video de BetoMoedano | React Native Navigation
-const AuthNavigation = () => {
-  return (
-    <NavigationContainer theme={navigationTheme}>
-      <MyAuthStack />
-    </NavigationContainer>
-  );
-};
-//export default AuthNavigation;
+// // Esta parte esta igual a la de Navigation  - Video de BetoMoedano | React Native Navigation
+// const AuthNavigation = () => {
+//   return (
+//     <NavigationContainer theme={navigationTheme}>
+//       <MyAuthStack />
+//     </NavigationContainer>
+//   );
+// };
+// //export default AuthNavigation;

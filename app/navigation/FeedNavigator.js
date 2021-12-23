@@ -12,23 +12,24 @@ const FeedStack = createNativeStackNavigator();
 
 const MyFeedStack = () => {
   return (
-    <FeedStack.Navigator>
-      <FeedStack.Screen name="Listings" component={ListingsScreen} />
+    <FeedStack.Navigator mode="modal">
+      <FeedStack.Screen name="Listings" component={ListingsScreen} options={{ headerShown: false }}/>
       <FeedStack.Screen
         name="ListingDetails"
         component={ListingDetailsScreen}
+        options={{ headerShown: false }}
       />
     </FeedStack.Navigator>
   );
 };
 
 export default MyFeedStack;
-const FeedNavigation = () => {
-  return (
-    <NavigationContainer theme={navigationTheme}>
-      <MyFeedStack />
-    </NavigationContainer>
-  );
-};
+// const FeedNavigation = () => {
+//   return (
+//     <NavigationContainer theme={navigationTheme}>
+//       <MyFeedStack />
+//     </NavigationContainer>
+//   );
+// };
 
-// export default FeedNavigation;
+// // export default FeedNavigation;

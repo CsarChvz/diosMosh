@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   userContainer: {
+    width: "100%",
     marginVertical: 40,
   },
 });
