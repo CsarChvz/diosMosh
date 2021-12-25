@@ -1,5 +1,5 @@
-import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { Alert, ScrollView, StyleSheet } from "react-native";
 import * as Yup from "yup";
 
 import {
@@ -12,7 +12,8 @@ import CategoryPickerItem from "../components/CategoryPickerItem";
 import Screen from "../components/Screen";
 import FormImagePicker from "../components/forms/FormImagePicker";
 import useLocation from "../hooks/useLocation";
-
+import listings from "../api/listings";
+import UploadScreen from "./UploadScreen";
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
   price: Yup.number().required().min(1).max(10000).label("Price"),
@@ -79,11 +80,33 @@ const categories = [
 ];
 
 function ListingEditScreen() {
+  const [uploadVisible, setUploadVisible] = useState(false);
+  const [progress, setProgress] = useState(0);
   const location = useLocation();
 
+  const handleSubmit = async (listing, { resetForm }) => {
+    setProgress(0);
+    setUploadVisible(true);
+    const result = await listings.addListing(
+      { ...listing, location },
+      (progress) => setProgress(progress)
+    );
+
+    if (!result.ok) {
+      setUploadVisible(false);
+      return alert("Could not save the listing");
+    }
+
+    resetForm();
+  };
   return (
     <ScrollView>
       <Screen style={styles.container}>
+        <UploadScreen
+          progress={progress}
+          visible={uploadVisible}
+          onDone={() => setUploadVisible(false)}
+        />
         <Form
           initialValues={{
             title: "",
@@ -92,7 +115,7 @@ function ListingEditScreen() {
             category: null,
             images: [],
           }}
-          onSubmit={(values) => console.log(location)}
+          onSubmit={handleSubmit}
           validationSchema={validationSchema}
         >
           <FormImagePicker name="images" />
